@@ -49,47 +49,129 @@ $gfaq = [
     ],          
 ];
 
-foreach ($nav as $key => $voci) 
-{
-    if( $key == "argument")
-    {
-        echo "<p>" . $voci . "</p>";
-    }
+?>
 
-    else
-    {
-        foreach ($voci as $key => $tab) 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google FAQ</title>
+    <style>
+        *
         {
-            echo "<a>" . $tab . "</a>" . " ";
+            font-family: sans-serif;
+            margin: 0;
+            padding:0;
+            box-sizing: border-box;
         }
-    }
-}
+        nav
+        {
+            position: fixed;
+            width: 100%;
+            border-bottom: 1px solid lightgray;
+            background-color: #fff;
+            z-index: 1;
+        }
+        main
+        {
+            margin: 0 auto;
+            position: relative;
+            top: 120px;
+            width: 70%;
+        }
+        .menu_tabs
+        {
+            padding: 24px 24px 0
+        }
+        .menu_tabs a
+        {
+            display:inline-block;
+            line-height: 2em;
+            padding: 8px;
+        }
+        .menu_tabs a:hover
+        {
+            border-bottom: 4px solid blue;
+        }
+        h2
+        {
+            margin-bottom: 24px;
+        }
+        .paragraph
+        {
+            padding: 32px 0 32px;
+        }
+        ul li
+        {
+            margin-left: 20px;
+            list-style-type: decimal;
+            list-style-position: outside;
+        }
 
-foreach ($gfaq as $value) 
-{
-    foreach ($value as $key => $content)
-    {    
-        if($key == "question")
+    </style>
+</head>
+<body>
+    
+</body>
+</html>
+
+
+<nav> 
+
+    <div class="menu_tabs">   
+        <?php
+        foreach ($nav as $key => $voci) 
         {
-            echo "<h2>" . $content . "</h2>";
-        }
-        else
-        {
-            if($key == "specific")
+            if( $key == "argument")
             {
-                foreach ($content as $specific)
+                echo "<h3>" . $voci . "</h3>";
+            }
+
+            else
+            {
+                foreach ($voci as $key => $tab) 
                 {
-                    echo "<ul>";
-                    echo "<li>" . $specific . "</li>";
-                    echo "</ul>";
+                    echo "<a>" . $tab . "</a>";
                 }
+            }
+        }
+        ?> 
+    </div> 
+
+</nav>
+
+<main>
+    <?php
+    foreach ($gfaq as $value) 
+    {
+        foreach ($value as $key => $content)
+        {    
+            if($key == "question")
+            {
+                echo "<div class='paragraph'>";
+                echo "<h2>" . $content . "</h2>";
             }
             else
             {
-                echo $content;
+                if($key == "specific")
+                {
+                    echo "<ul>";
+                    foreach ($content as $specific)
+                    {
+                        echo "<li>" . $specific . "</li>";
+                    }
+                    echo "</ul>";
+                }
+                else
+                {
+                    echo "<p>" . $content . "</p>";
+                    echo "</div>";
+                }
             }
-        }
-    }    
-}
+        }    
+    }
 
-?>    
+    ?>    
+</main>
